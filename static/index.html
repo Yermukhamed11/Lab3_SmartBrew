@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#163b2d">
+  <title>SmartBrew AI · A better coffee break</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="stylesheet" href="/style.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <aside class="sidebar">
+    <a class="brand" href="/" aria-label="SmartBrew home"><span class="brand-mark">s<span>•</span>b</span><span>SmartBrew<span class="brand-ai">AI COFFEE STUDIO</span></span></a>
+    <div class="nav-caption">YOUR DAILY RITUAL</div>
+    <nav aria-label="Main navigation">
+      <button class="nav-item active" data-view="brew"><span aria-hidden="true">☕</span> Brew coffee <span class="nav-dot"></span></button>
+      <button class="nav-item" data-view="admin"><span aria-hidden="true">▦</span> Administration</button>
+      <button class="nav-item" data-view="service"><span aria-hidden="true">⚙</span> Machine service</button>
+      <button class="nav-item" data-view="insights"><span aria-hidden="true">▥</span> Sales insights</button>
+    </nav>
+    <div class="sidebar-bottom"><span class="status-led"></span><span id="machine-label">Machine connected</span><p>Freshly brewed.<br>Thoughtfully made.</p><div class="demo-note">LAB 3 · INTERACTIVE PROTOTYPE<br>Payments, weather & hardware are simulated.</div></div>
+  </aside>
+  <div class="workspace">
+    <header class="topbar"><div><span class="breadcrumb">THE COFFEE STUDIO</span><span class="topbar-divider">/</span><span id="page-caption">Brew coffee</span></div><div class="topbar-right"><span class="location">◎ &nbsp; Campus · Machine 01</span><span class="avatar" aria-hidden="true">SB</span></div></header>
+    <main id="main" tabindex="-1"><div class="loading">Preparing your coffee studio…</div></main>
+    <footer>GOOD COFFEE. A LITTLE SMARTER.<span>SmartBrew AI · Software Engineering Lab 3</span></footer>
+  </div>
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+  <dialog id="dialog" aria-labelledby="dialog-title"></dialog>
+</body>
+</html>

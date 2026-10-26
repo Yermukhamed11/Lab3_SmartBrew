@@ -1,0 +1,2 @@
+# Python 3.11+ standard library only; no third-party Python dependencies.
+# SQLite support (sqlite3) must be included in the Python installation.

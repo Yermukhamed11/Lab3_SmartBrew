@@ -1,0 +1,158 @@
+                        Lab Assignment 2
+               Task 2b: Requirements and Planning
+
+                                 SmartBrew AI
+
+User Stories
+• As a Customer, I want to look at the digital menu so that I can see the coffee choices
+  and prices.
+• As a Customer, I want to use sliders to change the amount of sugar and milk so that
+  the drink tastes the way I like.
+• As a Customer, I want to pay with a contactless card or phone so that paying is fast
+  and easy.
+• As a Customer, I want the AI to suggest a drink based on the weather and time so
+  that I can try something new. (Custom Feature)
+• As a Customer, I want to see a progress bar so that I know when my coffee is ready.
+• As a System Admin, I want to edit the menu so that I can add new drinks and keep it
+  updated.
+• As a System Admin, I want to get an alert when ingredients are low (below 15%) so
+  that I can refill the machine in time.
+• As a System Admin, I want to see daily sales reports so that I know which drinks sell
+  best.
+• As a Maintenance Technician, I want to run hardware tests on pumps and heaters so
+  that I can find broken parts easily.
+• As a Maintenance Technician, I want to save error logs to a USB drive so that I can
+  check them on my computer.
+
+System Requirements
+ID            Description     Inputs         Outputs        Precondition       Postcondition
+REQ-01        Display         Touch          Drink          System is          Menu is
+              digital menu    interaction    selection UI   powered on         displayed and
+              and             on the main    and milk/sugar                    drink is
+              customization   screen         sliders                           selected
+              options
+REQ-02        Process         NFC            Payment          Drink is         Transaction
+              contactless     card/phone     success or       selected and     is approved
+              payment         tap            failure          total price is   and brewing
+                                             notification     calculated       begins
+REQ-03        AI drink        Time of day    Recommended      Internet         Suggestion is
+              suggestion      and weather    drink name       connection is    displayed to
+                              API data                        active           the customer
+                                            1
+ REQ-04     Monitor          Ingredient     Low-level         Machine has     Admin is
+            inventory        sensor data    alert             active          notified if
+            levels                          notification      physical        any level
+                                                              sensors         drops below
+                                                                              15%
+ REQ-05     Admin menu       Admin login    Updated           Admin is        New drinks
+            management       credentials    digital menu      logged into     are visible on
+                             and new                          the system      the customer
+                             menu item                                        menu
+                             data
+ REQ-06     Hardware         Maintenance    Test execution    System is       Hardware is
+            maintenance      PIN and        results and       locked in       tested and
+            mode             component      error logs        service mode    logs are
+                             selection                                        saved to USB
+
+
+Initial Product Backlog
+Note: The Importance scale ranges from 1 to 100 (100 being the highest priority).
+Effort is estimated in Story Points following the standard Fibonacci sequence (1,
+2, 3, 5, 8).
+ ID       Name          Imp. Est.      Description         How to demo              Notes
+                                       Build the touch
+                                                           Select a "Latte",
+                                       screen main
+          UI Menu &                                        change the milk slider
+                                       menu with drink                            Core
+ SB-01    Customizati 100       5                          to 20%, and verify the
+                                       choices and                                feature
+          on                                               UI updates the recipe
+                                       milk/sugar
+                                                           preview.
+                                       sliders.
+                                                           Tap a registered test
+                                       Add card reader
+          NFC                                              card, wait for
+                                       support for                                  Needs
+ SB-02    Payment       95      5                          "Approved" message,
+                                       contactless                                  hardware
+          Integration                                      and verify the order
+                                       payments.
+                                                           starts.
+                                       Implement a
+                                                           Disconnect internet to
+                                       background
+          Weather                                          trigger an error, then
+                                       service to fetch                             AI Sub-
+ SB-03    Data          80      3                          reconnect and verify
+                                       current local                                task 1
+          Fetcher                                          weather data is
+                                       weather and
+                                                           logged.
+                                       time.
+                                                         Manually set system
+                                       Build the UI that
+          AI                                             weather to "30°C",
+                                       uses weather                                 AI Sub-
+ SB-04    Suggestion    75      5                        click "Surprise Me",
+                                       data to suggest a                            task 2
+          Widget                                         and verify an iced
+                                       specific drink.
+                                                         drink is suggested.
+                                       Create a
+                                       background
+                                                         Override the database
+                                       check that
+          Inventory                                      bean level to 10% and      Requires
+ SB-05                  90      3      triggers a
+          Alerts                                         verify an alert appears    sensor API
+                                       warning if
+                                                         on the admin panel.
+                                       sensors drop
+                                       below 15%.
+ SB-06    Admin         85      3      Build a secure    Enter incorrect            Admin
+                                            2
+        Authenticat            login screen for  credentials to check    Sub-task 1
+        ion                    administrators.   error handling, then
+                                                 log in successfully
+                                                 with valid admin
+                                                 details.
+                                                 Log in, add a "Matcha
+        Menu                   Build a panel for
+                                                 Latte" with price $4,   Admin
+SB-07   Editor        85   5   admins to add or
+                                                 and verify it appears   Sub-task 2
+        Dashboard              edit drinks.
+                                                 on the customer UI.
+                                                 Tap the screen corner
+                               Create a hidden
+        Service                                  3 times, enter PIN,
+                               PIN screen for                            Maint.
+SB-08   Mode          70   2                     and verify the
+                               technician                                Sub-task 1
+        Login                                    maintenance interface
+                               access.
+                                                 opens.
+                                                 Click "Test Milk
+                                                 Pump", verify the
+        Hardware               Build manual
+                                                 specific pump           Maint.
+SB-09   Diagnostic    70   5   control buttons
+                                                 activates for 2         Sub-task 2
+        UI                     to test pumps.
+                                                 seconds without
+                                                 brewing coffee.
+                               Implement a       Insert a USB, click
+        USB Error              function to save "Export Logs", and
+                                                                         Maint.
+SB-10   Log           60   3   system error      verify a CSV file is
+                                                                         Sub-task 3
+        Exporter               logs to a USB     generated on the
+                               drive.            drive.
+
+
+
+
+                                   3
+
