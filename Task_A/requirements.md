@@ -47,11 +47,11 @@ Weather/time rule order is explicit: online temperature ≥25°C → Iced Latte;
 
 ## Non-functional requirements
 
-These measurable NFRs refine omissions in the PDF. “Acceptance” means the target/check, not a blanket production guarantee. Actual observed results are in [validation.md](validation.md).
+These measurable NFRs refine omissions in the PDF. “Acceptance” means the target/check, not a blanket production guarantee. Actual observed results are in [validation.md](../Task_B/validation.md).
 
 | ID | Requirement and acceptance criterion | Rationale/status |
 | --- | --- | --- |
-| NFR-01 Reproducibility | On Linux with Python ≥3.11 and SQLite, `python3 app.py` starts with no third-party package install or external service | Verified on Python 3.12.14; other OS versions not independently tested |
+| NFR-01 Reproducibility | On Linux with Python ≥3.11 and SQLite, `python3 app.py` from `Task_B/` starts with no third-party package install or external service | Verified on Python 3.12.14; other OS versions not independently tested |
 | NFR-02 Data integrity | An insufficient-stock purchase leaves every stock value and order count unchanged; a decline consumes nothing | HTTP integration assertions cover atomic rollback and decline |
 | NFR-03 Authorization | Every admin mutation/report requires admin role; diagnostics/log export require technician role; wrong role and unauthenticated calls fail | Tests cover rejected and valid requests; public demo credentials limit security |
 | NFR-04 Input safety | Server rejects malformed JSON, non-finite/out-of-range numbers and unsupported menu fields; SQL uses bound values | Bounded request body: 64 KiB; tests cover representative invalid inputs |

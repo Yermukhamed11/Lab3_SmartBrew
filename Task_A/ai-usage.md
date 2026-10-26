@@ -19,7 +19,7 @@ The final Task A artifacts were generated **after seeing the human Lab 2**, so t
 3. **Constrain generation.** Select exactly the baseline's ten backlog items. Separate software simulation from physical acceptance. Use Python standard library/SQLite and a same-origin browser UI to minimize independent-machine dependency issues. Require function input/output documentation and meaningful HTTP tests.
 4. **Divide outputs while preserving contracts.** Code, frontend, tests and documentation were assigned as parallel agent tasks. The parent supplied shared feature/API contracts and corrected scope when the PDF arrived. These are process prompts, not invented interviews with stakeholders.
 5. **Critically review and execute.** Check negative as well as positive behavior: declines, insufficient stock, wrong-role requests, 15% boundary, busy/service interlocks and offline weather. Compare claims against source and actual results; retain limitations rather than changing the criteria to call simulations physical integrations.
-6. **Preserve evidence.** Keep original PDF/text, annotated comparison, visible conversation excerpts and executable source/test outputs. See [prompt-log.md](prompt-log.md) and [validation.md](validation.md).
+6. **Preserve evidence.** Keep original PDF/text, annotated comparison, visible conversation excerpts and executable source/test outputs. See [prompt-log.md](prompt-log.md) and [validation.md](../Task_B/validation.md).
 
 ## Limits of the interaction record
 

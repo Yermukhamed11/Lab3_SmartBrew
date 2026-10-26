@@ -137,10 +137,10 @@ The complete final generated code responses are preserved in these files, rather
 
 | Output | File | What it contains |
 | --- | --- | --- |
-| Backend generation | [app.py](../app.py) | Database schema/transactions, role sessions, validation, orders/progress, recommendations, inventory, menu, diagnostics, CSV and HTTP routing |
-| Browser generation | [static/index.html](../static/index.html), [static/app.js](../static/app.js), [static/style.css](../static/style.css) | Customer/admin/technician screens and interaction logic |
-| Acceptance-test generation | [tests/test_app.py](../tests/test_app.py) | Nineteen actual HTTP tests, temporary data and lifecycle/restart checks |
-| Reproducibility/documentation generation | [README.md](../README.md), [requirements.md](requirements.md), [comparison.md](comparison.md), [report.md](report.md) | Runtime, demo guide, requirements, critical comparison and report |
+| Backend generation | [app.py](../Task_B/app.py) | Database schema/transactions, role sessions, validation, orders/progress, recommendations, inventory, menu, diagnostics, CSV and HTTP routing |
+| Browser generation | [static/index.html](../Task_B/static/index.html), [static/app.js](../Task_B/static/app.js), [static/style.css](../Task_B/static/style.css) | Customer/admin/technician screens and interaction logic |
+| Acceptance-test generation | [tests/test_app.py](../Task_B/tests/test_app.py) | Nineteen actual HTTP tests, temporary data and lifecycle/restart checks |
+| Reproducibility/documentation generation | [README.md](../Task_B/README.md), [requirements.md](requirements.md), [comparison.md](comparison.md), [report.md](../docs/report.md) | Runtime, demo guide, requirements, critical comparison and report |
 | Submission tooling | [scripts/package_submission.py](../scripts/package_submission.py) | Artifact/source ZIP generation |
 
 This is complete code generation with AI assistance, not a claim that the assistant merely revised human-written code. Code/output versions are fixed by the submitted repository snapshot. The platform's original chat export may additionally be attached by the student for raw-message provenance; this structured record does not claim to reproduce hidden prompts or every tool result.
@@ -163,7 +163,7 @@ Browser actual QA PASSED Chromium1440x1050 &390x844 no horizontal overflow, no u
 
 **Subsequent update:** the mobile screenshot was retaken on the clean seeded database, so the screenshot description in the earlier message above no longer describes the final image.
 
-**Process summary:** browser/source review corrected missing favicon handling, progress-width updates under Content Security Policy, UTC hour initialization and report captions. The resulting evidence, commands and limitations are recorded in [validation.md](validation.md). These tests prove local software behavior; they do not prove hardware integration, real-money transactions or live AI inference.
+**Process summary:** browser/source review corrected missing favicon handling, progress-width updates under Content Security Policy, UTC hour initialization and report captions. The resulting evidence, commands and limitations are recorded in [validation.md](../Task_B/validation.md). These tests prove local software behavior; they do not prove hardware integration, real-money transactions or live AI inference.
 
 ## 7. What the comparison accepts and rejects
 
@@ -181,7 +181,7 @@ Actual assistant response:
 
 > Проверю Task C отдельно: документацию каждой функции, версии и зависимости, а также инструкции запуска и демонстрации всех 10 функций на другой машине. Исправлю найденные пробелы до отправки в GitHub.
 
-**Review summary:** expanded explicit function contracts, corrected inaccurate HTML/plain-text comments, added fresh-machine clone/cd instructions, aligned demo labels, pinned the tested Python 3.12.14, and made the recipe preview show the documented millilitres as well as percentage. Source syntax/compilation and the targeted browser assertion passed; Python AST comparison confirmed documentation-only Python edits. See [validation.md](validation.md).
+**Review summary:** expanded explicit function contracts, corrected inaccurate HTML/plain-text comments, added fresh-machine clone/cd instructions, aligned demo labels, pinned the tested Python 3.12.14, and made the recipe preview show the documented millilitres as well as percentage. Source syntax/compilation and the targeted browser assertion passed; Python AST comparison confirmed documentation-only Python edits. See [validation.md](../Task_B/validation.md).
 
 ## 9. Task A review and additional elicitation/refinement
 
@@ -206,3 +206,15 @@ Actual assistant key response, verbatim:
 > Нашёл два важных момента: сравнение ошибочно приписывало ИИ уточнение порога «ниже 15%», хотя он уже указан в Lab 2; кроме того, требования исходной системы были смешаны с критериями программной симуляции. Исправляю это и делаю различия между исходными и доработанными User Stories наглядными.
 
 **Review/refinement output summary:** the parent produced ten distinct LLM-refined stories, preserving the actor/goal/benefit format and comparing each with the full original sentence. The Custom Feature label is retained; new explanation, validation, reporting and failure criteria are attributed as additions. Original physical-system obligations are separated from prototype fixtures and the open assumption register. No new human stakeholder answers, independent blind generation or hardware acceptance are asserted. [requirements.md](requirements.md) and [comparison.md](comparison.md) contain these actual updated outputs; Git history retains the earlier versions.
+
+## 10. Separate Task A and Task B folders
+
+User, verbatim:
+
+> Надо разделить Таск А и Таск Б по папкам
+
+Assistant, verbatim:
+
+> Разделю материалы на папки `Task_A` и `Task_B`, обновлю пути в README, CI и сборке ZIP. Затем проверю запуск приложения и тестов из новой структуры.
+
+**Result summary:** analysis, comparison, source PDF and prompting records were moved to `Task_A/`; the app, UI, tests, dependencies, execution guide and validation evidence were moved to `Task_B/`. The root README indexes both, and `docs/report.md` remains the shared report. Current navigable links were updated; original quoted paths above remain historical. All 19 HTTP tests passed from `Task_B/` after relocation.

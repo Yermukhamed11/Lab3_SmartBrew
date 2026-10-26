@@ -6,7 +6,7 @@ The current managed Linux instance ran Python 3.12.14 with standard-library SQLi
 
 ## Automated HTTP integration suite
 
-Command, run from the repository root:
+Command, run from the `Task_B` directory (the suite was rerun after relocation):
 
 ```sh
 python3 -m unittest discover -s tests -v
@@ -14,7 +14,7 @@ python3 -m unittest discover -s tests -v
 
 **Result: 19 tests passed in 22.585 seconds, exit status 0.** Tests use temporary SQLite databases, ephemeral HTTP ports and independent cookie-aware clients. They exercise actual HTTP handlers and persistence, rather than mock the API. The lifecycle test waits for the real 12-second simulated brewing interval.
 
-Coverage includes public catalog, milk/sugar bounds, approved and declined payments, no stock deduction on decline, atomic rejection of insufficient stock, inventory's strict below-15% boundary, weather/time fixtures and fallback recommendations, incorrect credentials, role separation and logout, menu additions/edits/hiding, service interlocks, pass/fail diagnostics, CSV contents, daily completed sales and persistence across server restart. See [test_app.py](../tests/test_app.py) for executable assertions.
+Coverage includes public catalog, milk/sugar bounds, approved and declined payments, no stock deduction on decline, atomic rejection of insufficient stock, inventory's strict below-15% boundary, weather/time fixtures and fallback recommendations, incorrect credentials, role separation and logout, menu additions/edits/hiding, service interlocks, pass/fail diagnostics, CSV contents, daily completed sales and persistence across server restart. See [test_app.py](tests/test_app.py) for executable assertions.
 
 There were no skipped, disabled or expected-failure cases. These tests validate the software simulation, not physical NFC payments or machinery.
 
@@ -55,3 +55,7 @@ Reviewed all named functions/methods across application, browser client, integra
 Added fresh-clone/extracted-ZIP working-directory instructions; aligned all ten README demo steps with real UI labels; explained that signing out does not exit service mode. `.python-version` and GitHub Actions now pin the actually tested Python 3.12.14. No third-party packages are needed.
 
 The review also found a real preview/documentation mismatch: the UI displayed milk percentage while the requirements/demo expected millilitres too. It now displays both, e.g. `20% milk (40 ml of 200 ml)`. A targeted Chromium assertion passed for that example. JavaScript syntax and Python compilation passed after the review. No Python behavior changed, so the already-passed HTTP integration suite did not need a redundant rerun.
+
+## Separate-task folder validation
+
+After relocating the prototype to `Task_B/`, `python3 -m unittest discover -s tests -v` executed **19 tests in 22.564 seconds: all passed, exit 0**, with no skipped or disabled tests. The working directory is `Task_B/`, matching the updated CI workflow and execution guide. The development server was restarted there, and existing runtime data was preserved in `Task_B/data/`. Local document links and the new archive layout are checked separately; historical quoted paths in the conversation log are retained as evidence of their original messages.

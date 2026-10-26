@@ -16,4 +16,5 @@ jobs:
         with:
           python-version: '3.12.14'
       - name: Run HTTP integration tests
+        working-directory: Task_B
         run: python -m unittest discover -s tests -v
