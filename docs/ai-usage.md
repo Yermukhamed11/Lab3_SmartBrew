@@ -8,6 +8,10 @@
 
 **Version disclosure:** the assistant identity exposed in this environment is GPT-6 via Codex. An exact dated model build, internal snapshot identifier, temperature and routing configuration are not exposed and are not invented. Parallel Codex agents inherited the same model configuration; they are not independently identified as different models. No external model runs inside the SmartBrew application.
 
+## Task A method and comparison limits
+
+The final Task A artifacts were generated **after seeing the human Lab 2**, so the process is baseline-informed elicitation/refinement. It is not a controlled independent comparison, and retained human features/priority values are not credited as new LLM discoveries. No separate original System Description was available. During the later Task A review, the model generated distinct refined stories and an explicit source-to-prototype mapping; every original sentence remains visible alongside its refinement in [comparison.md](comparison.md). The current prompts and key responses are recorded in [prompt-log.md](prompt-log.md), including that review.
+
 ## Prompt strategy actually used
 
 1. **Establish evidence before implementation.** Inspect the repository and ask for System Description/Lab 2. Initially the repository was empty. The user authorized proceeding, so a provisional cafe interpretation was stated explicitly rather than represented as a known requirement.

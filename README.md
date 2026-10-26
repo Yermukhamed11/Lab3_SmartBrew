@@ -96,6 +96,7 @@ This prototype uses HTTP on loopback, opaque in-memory session cookies, role che
 
 - [Task A — Requirements, user stories and backlog](docs/requirements.md)
 - [Task A — Annotated comparison with Assignment 2](docs/comparison.md)
+- [Task A — Assignment checklist and review corrections](docs/task-a-review.md)
 - [AI model disclosure and prompting strategy](docs/ai-usage.md)
 - [Prompt log and key responses](docs/prompt-log.md)
 - [Lab report and feature traceability](docs/report.md)

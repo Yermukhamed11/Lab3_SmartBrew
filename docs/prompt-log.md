@@ -182,3 +182,27 @@ Actual assistant response:
 > Проверю Task C отдельно: документацию каждой функции, версии и зависимости, а также инструкции запуска и демонстрации всех 10 функций на другой машине. Исправлю найденные пробелы до отправки в GitHub.
 
 **Review summary:** expanded explicit function contracts, corrected inaccurate HTML/plain-text comments, added fresh-machine clone/cd instructions, aligned demo labels, pinned the tested Python 3.12.14, and made the recipe preview show the documented millilitres as well as percentage. Source syntax/compilation and the targeted browser assertion passed; Python AST comparison confirmed documentation-only Python edits. See [validation.md](validation.md).
+
+## 9. Task A review and additional elicitation/refinement
+
+User, verbatim:
+
+> Проверь таск A тоже
+
+Assistant, verbatim:
+
+> Проверю Task A по условиям задания и вашему PDF: требования, User Stories, Product Backlog, сравнение с Lab 2 и журнал запросов. Исправлю найденные несоответствия.
+
+Actual parent-to-review-agent prompt, verbatim:
+
+```text
+User asks 'Проверь таск A тоже'. Do READ-ONLY independent audit Task A against assignment actual and docs/reference/lab2.txt/pdf. Inspect docs/requirements.md comparison.md ai-usage.md prompt-log.md report.md. Verify 10 stories exact,6 baselineREQ and10 backlog with estimates weights preserved,side-by-side comparison improvements/missing/rejections justification, honest model prompt logs. Identify material misleading claims/gaps including baseline-informed vs independent elicitation, original physical target vs narrowed prototype, threshold already explicit below15%, forgotten CustomFeature tag US04. Do not edit files; root applying fixes. Return prioritized specific findings quickly.
+```
+
+Here “independent audit” means a second agent checked the existing artifacts; it does not mean the requirements were elicited without seeing Lab 2.
+
+Actual assistant key response, verbatim:
+
+> Нашёл два важных момента: сравнение ошибочно приписывало ИИ уточнение порога «ниже 15%», хотя он уже указан в Lab 2; кроме того, требования исходной системы были смешаны с критериями программной симуляции. Исправляю это и делаю различия между исходными и доработанными User Stories наглядными.
+
+**Review/refinement output summary:** the parent produced ten distinct LLM-refined stories, preserving the actor/goal/benefit format and comparing each with the full original sentence. The Custom Feature label is retained; new explanation, validation, reporting and failure criteria are attributed as additions. Original physical-system obligations are separated from prototype fixtures and the open assumption register. No new human stakeholder answers, independent blind generation or hardware acceptance are asserted. [requirements.md](requirements.md) and [comparison.md](comparison.md) contain these actual updated outputs; Git history retains the earlier versions.

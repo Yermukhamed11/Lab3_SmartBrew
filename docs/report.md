@@ -6,7 +6,9 @@ Prepared 26 October 2026. Repository: <https://github.com/Yermukhamed11/Lab3_Sma
 
 The human baseline is the supplied three-page Assignment 2 PDF: [original](reference/lab2.pdf), [layout-preserving extraction](reference/lab2.txt). [requirements.md](requirements.md) contains functional and non-functional requirements, all ten user stories with acceptance criteria, and a prioritized product backlog in the baseline's format. [comparison.md](comparison.md) provides row-by-row differences, improvements, missing/unsupported assumptions and individual rejection/deferment reasons. [prompt-log.md](prompt-log.md) records the conversational evidence and code-output references.
 
-The model initially inferred a cafe from the repository name; that provisional scope was rejected after reading the PDF. The final system is a coffee-machine interface. The separate full System Description was not supplied, so the PDF is the available source of truth. Additional numeric bounds, accounting policies and simulation choices are identified explicitly.
+The model initially inferred a cafe from the repository name; that provisional scope was rejected after reading the PDF. The final system is a coffee-machine interface. The separate full System Description was not supplied, so the PDF is the available source of truth. Additional numeric bounds, accounting policies and simulation choices are identified explicitly. This is baseline-informed LLM refinement, not blind independent elicitation. The comparison now pairs all ten original human stories with their LLM-refined wording; the requirements separate original target commitments from prototype acceptance and register unresolved assumptions.
+
+The later [Task A checklist/review](task-a-review.md) records the rubric checks and corrections, including full story-to-story comparisons, the already-human-defined 15% threshold, and unresolved source/physical-scope limits.
 
 ## Task B — Ten implemented software functionalities
 
