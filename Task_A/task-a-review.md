@@ -1,6 +1,6 @@
 # Task A review against the assignment
 
-This review uses the actual Assignment 2 PDF and the assignment prompt in [prompt-log.md](prompt-log.md). It checks the submission artifacts, not instructor acceptance or unavailable original source material.
+This review uses the actual Assignment 2 PDF and the assignment prompt retained in [conversation-appendix.md](conversation-appendix.md). It checks the submission artifacts, not instructor acceptance or unavailable original source material.
 
 | Task A condition | Evidence after review | Result / limitation |
 | --- | --- | --- |
@@ -8,7 +8,7 @@ This review uses the actual Assignment 2 PDF and the assignment prompt in [promp
 | Format matching Assignment 2 | Same six FR columns; actor/goal/benefit stories; same seven backlog columns and scales | Preserved structure; acceptance/traceability annotations are explicitly added |
 | User Stories | Ten LLM-refined US-01–US-10; all ten original human sentences in [comparison.md](comparison.md) | Full side-by-side wording and change assessments; Custom Feature marker retained |
 | Product Backlog | SB-01–SB-10 with original importance and Fibonacci estimates | All ten pairs match the PDF; updated descriptions/demos are marked adaptations |
-| Prompt strategy and main prompts/key responses | [ai-usage.md](ai-usage.md), [prompt-log.md](prompt-log.md) | Original English messages, labeled English translations and labeled summaries; exact hidden model build is unavailable and not invented |
+| Prompt strategy and main prompts/key responses | [ai-usage.md](ai-usage.md), [interaction report](prompt-log.md), [conversation appendix](conversation-appendix.md) | Original English messages, labeled English translations and labeled summaries; exact hidden model build is unavailable and not invented |
 | Clearly highlighted comparison | Requirement-by-requirement, story-by-story and backlog comparisons | Preserved, added, narrowed and deferred aspects distinguished |
 | Improvements, omissions and incorrect/unneeded suggestions | Critical assessment and rejection/deferment table in [comparison.md](comparison.md) | Each rejected/deferred suggestion has a reason; original 15% rule credited to the human |
 | Model/version disclosure | GPT-6 through Codex for Task A, with exact-build limitation | Available identity documented; no fabricated version/date |

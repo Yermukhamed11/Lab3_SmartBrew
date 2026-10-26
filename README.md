@@ -35,7 +35,8 @@ The [Task B guide](Task_B/README.md) includes prerequisites, configuration, demo
 - [Requirements, user stories and backlog](Task_A/requirements.md)
 - [Annotated comparison with Assignment 2](Task_A/comparison.md)
 - [AI models and prompting strategy](Task_A/ai-usage.md)
-- [English prompt log and key responses](Task_A/prompt-log.md)
+- [Interaction report and key decisions](Task_A/prompt-log.md)
+- [Reusable English prompt library](Task_A/prompt-library.md)
 - [Cross-task report and feature traceability](docs/report.md)
 
 The supplied Assignment 2 PDF is the comparison baseline. The original full System Description was not supplied separately; prototype decisions and deviations are documented explicitly.
