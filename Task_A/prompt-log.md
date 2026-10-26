@@ -1,6 +1,6 @@
 # Prompt log and code-generation conversation record
 
-This is a **structured record of actual visible messages and selected process prompts**, with generated code responses retained in repository files. It is not a fabricated historical elicitation, a stakeholder interview, or a full raw API/tool export. Quoted blocks below reproduce available messages; sections labeled “summary” condense process activity. The assistant used OpenAI GPT-6 through Codex; exact model build/version beyond that identity was not exposed.
+This is an **English submission version of a structured record of actual visible messages and selected process prompts**, with generated code responses retained in repository files. Historical messages originally written in Russian are faithfully translated into English and explicitly labeled as translations; they are not presented as original English wording. Original English prompts remain verbatim where indicated. This is not a fabricated historical elicitation, a stakeholder interview, or a full raw API/tool export. Sections labeled “summary” condense process activity. The assistant used OpenAI GPT-6 through Codex; exact model build/version beyond that identity was not exposed.
 
 ## 1. Main user task prompt — verbatim
 
@@ -88,40 +88,40 @@ Canvas Upload: Submit a ZIP file containing the report/artifacts for Task A (inc
 Deadline: 26-Oct-2026. (As with previous submissions, reasonable flexibility applies upon request).
 ```
 
-## 2. Assistant clarification response — verbatim
+## 2. Assistant clarification response — English translation from Russian
 
-> Могу подготовить Lab 3 в `Lab3_SmartBrew`: требования, 10 функций, работающий прототип, тесты и документацию. Для начала нужны исходные материалы:
+> I can prepare Lab 3 in `Lab3_SmartBrew`: requirements, 10 features, a working prototype, tests and documentation. First, I need the source materials:
 >
-> 1. **System Description**, который используется во всех ваших лабораторных. Пришлите текст или файл — одного названия SmartBrew недостаточно для корректных требований.
-> 2. **Материалы Assignment 2**: требования, User Stories и Product Backlog. Если вы не сдавали Lab 2, сообщите об этом: задание разрешает выполнить elicitation без сравнения, подробно документируя процесс.
+> 1. The **System Description** used across all your lab assignments. Send the text or file; the name SmartBrew alone is insufficient to produce accurate requirements.
+> 2. **Assignment 2 materials**: requirements, User Stories and Product Backlog. If you did not submit Lab 2, let me know: the assignment permits elicitation without a comparison, provided the process is documented in detail.
 >
-> Реальные запросы и ответы сохраню в журнале. Для текущей работы укажу **OpenAI GPT-6 / Codex**, без выдуманной истории взаимодействия или результатов Lab 2.
+> I will save the actual prompts and responses in the log. For this work, I will identify the model as **OpenAI GPT-6 / Codex**, without inventing an interaction history or Lab 2 results.
 
-## 3. User authorization and provisional response — verbatim
+## 3. User authorization and provisional response — English translations from Russian
 
-User:
+User, translated from Russian:
 
-> Да сделай
+> Yes, do it.
 
-Assistant:
+Assistant, translated from Russian:
 
-> Сделаю Lab 3 как проект SmartBrew — систему заказа кофе, управления приготовлением и запасами. Поскольку исходное описание и Lab 2 пока не предоставлены, явно отмечу принятые допущения; сравнение с Lab 2 оформлю как шаблон для заполнения, без выдуманных результатов. Подготовлю 10 функций, веб-прототип, тесты, отчёт и журнал работы с ИИ.
+> I will build Lab 3 as SmartBrew, a system for ordering coffee and managing preparation and inventory. Since the original description and Lab 2 have not yet been supplied, I will explicitly identify my assumptions; I will provide the Lab 2 comparison as a template to complete, without invented results. I will prepare 10 features, a web prototype, tests, a report and an AI interaction log.
 
-Optional source-material prompt actually sent:
+Optional source-material prompt actually sent, translated from Russian:
 
-> Если у вас есть исходный System Description или материалы Lab 2, пришлите их текстом, чтобы я учёл их в проекте. Пока продолжу с явно обозначенными допущениями для SmartBrew.
+> If you have the original System Description or Lab 2 materials, send them as text so I can incorporate them into the project. In the meantime, I will continue with explicitly stated assumptions for SmartBrew.
 
 **Critical annotation:** this provisional cafe interpretation was not grounded in the later PDF. It was superseded, and the final comparison is a real PDF-based comparison rather than the initially proposed template.
 
 ## 4. Source arrival and scope correction
 
-The user subsequently indicated `отправил как пдф` and supplied the Assignment 2 attachment. The actual original source is retained at [reference/lab2.pdf](reference/lab2.pdf); its extraction is [reference/lab2.txt](reference/lab2.txt). The attachment establishes coffee-machine requirements, including sliders, contactless payments, weather suggestions, inventory alerts, administrator controls and maintenance mode.
+The user subsequently indicated “I sent it as a PDF” (English translation from Russian) and supplied the Assignment 2 attachment. The actual original source is retained at [reference/lab2.pdf](reference/lab2.pdf); its extraction is [reference/lab2.txt](reference/lab2.txt). The attachment establishes coffee-machine requirements, including sliders, contactless payments, weather suggestions, inventory alerts, administrator controls and maintenance mode.
 
 **Process summary:** the parent agent read the extracted PDF and instructed implementation/documentation agents to discard cafe pickup/rewards/reviews assumptions. All final feature IDs were aligned with the actual SB-01–SB-10 backlog. The source's story/table formats and importance/estimate values were preserved. The complete separately authored System Description was not supplied, and physical integrations were explicitly simulated.
 
-Actual user-facing assistant response after reading the PDF, verbatim:
+Actual user-facing assistant response after reading the PDF, translated from Russian:
 
-> PDF получен: это Lab 2 для кофейного автомата SmartBrew AI. Перестраиваю проект под ваши SB-01–SB-10: слайдеры молока и сахара, оплату, рекомендации по погоде, запасы, администрирование и обслуживание. NFC, датчики, насосы и USB будут явно обозначены как симуляции — физическое оборудование в облачной среде недоступно.
+> The PDF has arrived: it is Lab 2 for the SmartBrew AI coffee machine. I am restructuring the project around your SB-01–SB-10: milk and sugar sliders, payment, weather-based recommendations, inventory, administration and maintenance. NFC, sensors, pumps and USB will be explicitly identified as simulations because physical equipment is unavailable in the cloud environment.
 
 Actual parent-to-documentation-agent correction prompt, verbatim:
 
@@ -173,48 +173,60 @@ The report reflects the interaction's actual change of direction. No earlier hum
 
 ## 8. Later Task C review request
 
-The user reiterated the Task C requirements for repository hosting, function purpose/inputs/outputs, README overview/runtime/run/test guidance and reproducible setup, then asked verbatim:
+The user reiterated the Task C requirements for repository hosting, function purpose/inputs/outputs, README overview/runtime/run/test guidance and reproducible setup, then asked (English translation from Russian):
 
-> Проверь еще условия, если есть неправильные места исправь
+> Check the requirements again, and fix anything that is incorrect.
 
-Actual assistant response:
+Actual assistant response, translated from Russian:
 
-> Проверю Task C отдельно: документацию каждой функции, версии и зависимости, а также инструкции запуска и демонстрации всех 10 функций на другой машине. Исправлю найденные пробелы до отправки в GitHub.
+> I will check Task C separately: documentation for every function, versions and dependencies, and instructions for running and demonstrating all 10 features on another machine. I will fix any gaps before uploading to GitHub.
 
 **Review summary:** expanded explicit function contracts, corrected inaccurate HTML/plain-text comments, added fresh-machine clone/cd instructions, aligned demo labels, pinned the tested Python 3.12.14, and made the recipe preview show the documented millilitres as well as percentage. Source syntax/compilation and the targeted browser assertion passed; Python AST comparison confirmed documentation-only Python edits. See [validation.md](../Task_B/validation.md).
 
 ## 9. Task A review and additional elicitation/refinement
 
-User, verbatim:
+User, translated from Russian:
 
-> Проверь таск A тоже
+> Check Task A too.
 
-Assistant, verbatim:
+Assistant, translated from Russian:
 
-> Проверю Task A по условиям задания и вашему PDF: требования, User Stories, Product Backlog, сравнение с Lab 2 и журнал запросов. Исправлю найденные несоответствия.
+> I will check Task A against the assignment instructions and your PDF: requirements, User Stories, Product Backlog, the comparison with Lab 2 and the prompt log. I will fix any inconsistencies I find.
 
-Actual parent-to-review-agent prompt, verbatim:
+Actual parent-to-review-agent prompt, English version with the embedded Russian user request translated; the remaining text is unchanged:
 
 ```text
-User asks 'Проверь таск A тоже'. Do READ-ONLY independent audit Task A against assignment actual and docs/reference/lab2.txt/pdf. Inspect docs/requirements.md comparison.md ai-usage.md prompt-log.md report.md. Verify 10 stories exact,6 baselineREQ and10 backlog with estimates weights preserved,side-by-side comparison improvements/missing/rejections justification, honest model prompt logs. Identify material misleading claims/gaps including baseline-informed vs independent elicitation, original physical target vs narrowed prototype, threshold already explicit below15%, forgotten CustomFeature tag US04. Do not edit files; root applying fixes. Return prioritized specific findings quickly.
+User asks 'Check Task A too'. Do READ-ONLY independent audit Task A against assignment actual and docs/reference/lab2.txt/pdf. Inspect docs/requirements.md comparison.md ai-usage.md prompt-log.md report.md. Verify 10 stories exact,6 baselineREQ and10 backlog with estimates weights preserved,side-by-side comparison improvements/missing/rejections justification, honest model prompt logs. Identify material misleading claims/gaps including baseline-informed vs independent elicitation, original physical target vs narrowed prototype, threshold already explicit below15%, forgotten CustomFeature tag US04. Do not edit files; root applying fixes. Return prioritized specific findings quickly.
 ```
 
 Here “independent audit” means a second agent checked the existing artifacts; it does not mean the requirements were elicited without seeing Lab 2.
 
-Actual assistant key response, verbatim:
+Actual assistant key response, translated from Russian:
 
-> Нашёл два важных момента: сравнение ошибочно приписывало ИИ уточнение порога «ниже 15%», хотя он уже указан в Lab 2; кроме того, требования исходной системы были смешаны с критериями программной симуляции. Исправляю это и делаю различия между исходными и доработанными User Stories наглядными.
+> I found two important issues: the comparison incorrectly credited AI with clarifying the “below 15%” threshold, although it was already specified in Lab 2; the original system requirements were also mixed with software-simulation criteria. I am correcting this and making the differences between the original and refined User Stories explicit.
 
 **Review/refinement output summary:** the parent produced ten distinct LLM-refined stories, preserving the actor/goal/benefit format and comparing each with the full original sentence. The Custom Feature label is retained; new explanation, validation, reporting and failure criteria are attributed as additions. Original physical-system obligations are separated from prototype fixtures and the open assumption register. No new human stakeholder answers, independent blind generation or hardware acceptance are asserted. [requirements.md](requirements.md) and [comparison.md](comparison.md) contain these actual updated outputs; Git history retains the earlier versions.
 
 ## 10. Separate Task A and Task B folders
 
-User, verbatim:
+User, translated from Russian:
 
-> Надо разделить Таск А и Таск Б по папкам
+> Task A and Task B need to be separated into folders.
 
-Assistant, verbatim:
+Assistant, translated from Russian:
 
-> Разделю материалы на папки `Task_A` и `Task_B`, обновлю пути в README, CI и сборке ZIP. Затем проверю запуск приложения и тестов из новой структуры.
+> I will separate the materials into `Task_A` and `Task_B` folders and update the paths in the README, CI and ZIP packaging. I will then verify that the application and tests run from the new structure.
 
 **Result summary:** analysis, comparison, source PDF and prompting records were moved to `Task_A/`; the app, UI, tests, dependencies, execution guide and validation evidence were moved to `Task_B/`. The root README indexes both, and `docs/report.md` remains the shared report. Current navigable links were updated; original quoted paths above remain historical. All 19 HTTP tests passed from `Task_B/` after relocation.
+
+## 11. English-language submission record
+
+Current user request, translated summary from Russian:
+
+> Make all requests, prompts and responses English for submission.
+
+Current assistant response, translated summary from Russian:
+
+> I will translate the interaction record into English and identify historical messages as translations. I will check the rest of the documentation and update GitHub and the ZIP archive.
+
+**Translation note:** this English version preserves the meaning of the historical messages while identifying their original language. Original English prompts remain verbatim where labeled; translated quotations are not represented as original English messages. The latest request and response above are concise translated summaries rather than claimed word-for-word originals. Publication and archive results are reported separately after validation.

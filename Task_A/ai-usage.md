@@ -23,9 +23,13 @@ The final Task A artifacts were generated **after seeing the human Lab 2**, so t
 
 ## Limits of the interaction record
 
-[prompt-log.md](prompt-log.md) records the actual main task prompt, known user steering, visible assistant responses and selected process prompts. It is a structured conversational record, **not a raw API export or a claim that internal tool telemetry has been reproduced in full**. Code-generation outputs are retained verbatim as repository source files and linked from the record instead of duplicated as thousands of lines inside the report. Selected quotations are labeled as quotations; summaries are labeled as summaries. No dialogue is backdated or invented to resemble an earlier Lab 2 elicitation session.
+[prompt-log.md](prompt-log.md) records the actual main task prompt, known user steering, visible assistant responses and selected process prompts. It is a structured conversational record, **not a raw API export or a claim that internal tool telemetry has been reproduced in full**. Code-generation outputs are retained verbatim as repository source files and linked from the record instead of duplicated as thousands of lines inside the report. Originally English quotations are identified as verbatim. Messages originally written in Russian are presented as faithful English translations and labeled accordingly; the submission does not claim they were originally exchanged in English. Summaries are labeled as summaries. No dialogue is backdated or invented to resemble an earlier Lab 2 elicitation session.
 
 The comparison is against the supplied human PDF. The student did not independently author the LLM artifacts in this session; AI assistance applies to all three tasks. The student should export the original platform conversation too if a course reviewer requires the complete raw chat history rather than this structured record and generated files.
+
+## English submission edition
+
+At the user's request, the submission presents every request, prompt and response in English. Russian-language source messages were translated with OpenAI GPT-6 through Codex; translated passages are explicitly labeled, while original English prompts retain their verbatim status. The mixed-language process prompt is labeled as an English version with its embedded user quotation translated. The original conversation is not rewritten historically; earlier repository revisions retain the earlier text, and the current submission contains the English edition. This translation changes presentation, not the requirements, test results, model disclosure or implementation.
 
 ## Critical evaluation
 

@@ -98,7 +98,7 @@ This prototype uses HTTP on loopback, opaque in-memory session cookies, role che
 - [Task A — Annotated comparison with Assignment 2](../Task_A/comparison.md)
 - [Task A — Assignment checklist and review corrections](../Task_A/task-a-review.md)
 - [AI model disclosure and prompting strategy](../Task_A/ai-usage.md)
-- [Prompt log and key responses](../Task_A/prompt-log.md)
+- [English prompt log and key responses](../Task_A/prompt-log.md)
 - [Lab report and feature traceability](../docs/report.md)
 
 The supplied Assignment 2 PDF is the human-authored comparison baseline. The original full System Description was not supplied separately; additions beyond the PDF are explicitly identified as prototype decisions rather than historical facts. See the comparison for retained requirements, refinements, rejected suggestions and hardware-related scope differences. AI assistance is disclosed for Tasks A, B and C; exact model build identifiers unavailable to the assistant are not invented.
