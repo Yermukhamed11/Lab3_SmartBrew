@@ -1,91 +1,531 @@
 # Prompt log and code-generation conversation record
 
-This is an **English submission version of a structured record of actual visible messages and selected process prompts**, with generated code responses retained in repository files. Historical messages originally written in Russian are faithfully translated into English and explicitly labeled as translations; they are not presented as original English wording. Original English prompts remain verbatim where indicated. This is not a fabricated historical elicitation, a stakeholder interview, or a full raw API/tool export. Sections labeled “summary” condense process activity. The assistant used OpenAI GPT-6 through Codex; exact model build/version beyond that identity was not exposed.
+This is an **English submission version of a structured record of actual visible messages and selected process prompts**, with generated code responses retained in repository files. Historical messages originally written in Russian are faithfully translated into English and explicitly labeled as translations; they are not presented as original English wording. Original English prompts remain verbatim where indicated. The assistant used OpenAI GPT-6 through Codex; exact model build/version beyond that identity was not exposed.
 
 ## 1. Main user task prompt — verbatim
 
 ```text
-Lab Assignment 3: Software Engineering with LLMs
-The goal of this assignment is to engage with core software engineering tasks using Large Language Models (LLMs) as virtual assistants. You will observe, guide, and critically evaluate the software development lifecycle when augmented by AI.
+SmartBrew AI: Complete Lab Assignment 3, Audit, Improvement, and Submission Preparation
 
-You are required to complete three main tasks:
+ROLE
 
-Task A: LLM-Assisted Requirements Elicitation
+Act as a senior software engineer, requirements analyst, QA engineer, technical documentation specialist, and university assignment evaluator.
 
-Task B: Code Generation & Implementation
+Your mission is to audit, improve, complete, test, and prepare my existing SmartBrew AI project for submission to Mälardalen University.
 
-Task C: Documentation & Repository Management
+Repository: https://github.com/Yermukhamed11/Lab3_SmartBrew
 
-Choice of LLM
-You are free to use any LLM or AI assistant of your choice (e.g., ChatGPT/GPT-4, Claude, Gemini, GitHub Copilot, Llama, etc.). However, you must explicitly document which model(s) and version(s) you used for each task.
+Assignment: Lab Assignment 3: Software Engineering with LLMs
 
-Task A: Requirements Elicitation & Critical Comparison
-Elicitation with LLMs:
+Deadline: October 26, 2026
 
-Conduct a requirements elicitation process for the System Description used across all Labs using your chosen LLM. Generate the following three artifacts (matching the required format from Assignment 2):
+This is an existing project, not a greenfield project. Preserve its working functionality, existing requirements traceability, and previous artifacts.
 
-Functional and Non-Functional Requirements
+Do not merely provide recommendations. Make the necessary changes directly in the repository, run the appropriate checks, generate the required artifacts, and report the results.
 
-User Stories
+All submission documentation must be written in professional, clear academic English.
 
-Product Backlog
+---
 
-Prompting & Transcript:
+PHASE 1: REPOSITORY INSPECTION
 
-You must document the prompt strategy you used to generate these artifacts. Include the main prompts and key responses as an appendix or separate document.
+Before modifying anything:
 
-Comparison with Assignment 2:
+1. Read the complete repository structure.
+2. Examine all files under "Task_A/", "Task_B/", "docs/", "scripts/", and ".github/".
+3. Read the root README and the Task B README.
+4. Identify the original Assignment 2 reference material.
+5. Inspect the source code, UI, automated tests, requirements, user stories, backlog, comparison reports, and prompt records.
+6. Review Git status and recent commits.
+7. Identify missing, incomplete, contradictory, redundant, or incorrectly documented elements.
 
-Compare the LLM-generated artifacts with the human-elicited version you submitted for Assignment 2.
+Create a compliance matrix using:
 
-Highlight differences clearly (e.g., via side-by-side text, Git diff format with red/green highlights, or detailed annotated lists).
+Assignment requirement| Existing evidence| Status| Required action
 
-Detail what the LLM improved, missing aspects it failed to identify, or unneeded/incorrect requirements it suggested.
+Use the following statuses:
 
-If you reject LLM suggestions, you must provide a short justification for each rejection.
+- PASS: Fully implemented and verified
+- PARTIAL: Implemented but incomplete or insufficiently evidenced
+- MISSING: Not implemented or not documented
+- BLOCKED: Cannot be verified with available resources
 
-(Note for students who did not submit Assignment 2: You may either complete Assignment 2 first and then perform the comparison, or perform the LLM elicitation directly while fully documenting and justifying every step of your interaction with the LLM).
+Avoid unnecessary rewrites. Prioritize meaningful improvements and preserve valid work.
 
-Task B: Code Generation & Execution
-Functionality Selection: Select a core set of 10 features/functionalities (not trivial) from the requirements elicited in Task A.
+PHASE 2: TASK A — REQUIREMENTS ELICITATION
 
-Implementation: Realize/code these 10 functionalities with LLM assistance.
+A1. Requirements Analysis
 
-Executable Prototype: Ensure a working user experience. The system must run smoothly and demonstrate the selected 10 functionalities clearly. It is not required a complete portability of the project (Can work on only one specific OS, like macOS, linux and windows).
+Use the original Assignment 2 submission as the authoritative human-produced comparison baseline.
 
-In case of complete code generation, you need to add the conversation. If you used the LLM just as an assistant to revise the code it is not required to include the conversation.
-Task C: Repository & Documentation
-Git Repository: Host your codebase in a Git repository (e.g., GitHub).
+Use the original SmartBrew system description if it is available.
 
-Code Documentation & Comments:
+Generate or improve the following three artifacts:
 
-All source code must be documented with clear comments. At a minimum, every function/method must include:
+Artifact 1: Functional and Non-Functional Requirements
 
-Description of purpose
+Each functional requirement should include:
 
-Expected Input parameters
+- Unique requirement ID
+- Requirement name
+- Description
+- Actors
+- Inputs
+- Outputs
+- Preconditions
+- Postconditions
+- Acceptance criteria
+- Priority
+- Related user stories
 
-Expected Output / Return values
+Non-functional requirements must cover relevant quality attributes such as usability, performance, reliability, security, maintainability, and portability.
 
-README Document:
+Make every requirement specific, testable, and traceable.
 
-The repository must include a clear README.md containing:
+Clearly distinguish original requirements from LLM-added refinements and implementation assumptions.
 
-System Overview: Brief description of the project.
+Artifact 2: User Stories
 
-Environment & Prerequisites: Compiler/runtime versions, libraries, and external dependencies required to run the code.
+Use the format:
 
-Execution Guide: Step-by-step instructions on how to build, run, and test the 10 functionalities (whether via command-line arguments, scripts, CLI, or GUI navigation steps).
+"As a [role], I want [functionality], so that [benefit]."
 
-General Information & Constraints
-You may use any programming language, framework, or IDE. However, remember that the evaluation takes place on an independent machine. Your project must include clear environment setup instructions or configuration files (e.g., requirements.txt, package.json, pom.xml, or Dockerfile) so it can be built and run without version mismatch issues.
+Each user story must have:
 
-Submission Guidelines
-GitHub Repository: Share the repository link. If the repository is private, invite the instructor as a collaborator (GitHub ID: riccardoRubei).
+- Unique ID
+- Actor
+- User story
+- Priority
+- Acceptance criteria
+- Related functional requirements
 
-Canvas Upload: Submit a ZIP file containing the report/artifacts for Task A (including the comparison and prompt logs) and Task B (or reference the GitHub repository link directly).
+Ensure the stories accurately reflect SmartBrew's customer, administrator, and technician interactions.
 
-Deadline: 26-Oct-2026. (As with previous submissions, reasonable flexibility applies upon request).
+Artifact 3: Product Backlog
+
+Prepare a structured backlog including:
+
+- Backlog ID
+- Related user story
+- Feature description
+- Priority
+- Estimated effort
+- Dependencies
+- Acceptance criteria
+- Implementation status
+
+Preserve the existing SB-01 through SB-10 feature identifiers.
+
+Do not arbitrarily change original priorities or effort estimates without documenting why.
+
+A2. Comparison With Assignment 2
+
+Perform a detailed comparison between the actual human-produced Assignment 2 artifacts and the LLM-generated/refined Task A artifacts.
+
+Provide side-by-side comparisons for:
+
+1. Functional requirements
+2. Non-functional requirements
+3. User stories
+4. Product backlog
+
+For each meaningful difference explain:
+
+- What existed in Assignment 2
+- What the LLM changed or added
+- Whether this is an improvement, omission, unsupported assumption, unnecessary addition, or error
+- Why the change should be accepted, modified, or rejected
+- Its impact on development and testing
+
+Explicitly discuss the LLM's strengths and limitations.
+
+Do not fabricate requirements from Assignment 2.
+
+If the original system description is unavailable, disclose this limitation.
+
+If the LLM had access to Assignment 2 before producing its final artifacts, describe the work accurately as baseline-informed refinement rather than independent elicitation.
+
+A3. Prompt Strategy and Conversation Records
+
+Create or improve a well-organized AI interaction record.
+
+Include:
+
+- Actual model names and available version information
+- The purpose of each prompting stage
+- Actual prompts that were used
+- Available key LLM responses
+- Student corrections and decisions
+- Rejected suggestions with justification
+- Iterative improvements
+- Critical evaluation of AI assistance
+
+Organize the material into understandable stages:
+
+1. Initial requirements understanding
+2. Requirements generation and refinement
+3. Comparison and correction
+4. Feature selection and implementation planning
+5. Code generation and debugging
+6. Testing and documentation
+7. Final evaluation
+
+IMPORTANT ACADEMIC INTEGRITY RULES:
+
+- Never invent historical conversations.
+- Never present newly written example prompts as previously executed prompts.
+- Label retrospective prompt templates as retrospective examples.
+- Clearly distinguish verbatim records, translated records, summaries, and reconstructed explanations.
+- Never invent model build identifiers or execution evidence.
+- Preserve the actual development history rather than presenting an artificially perfect process.
+
+A transparent account of AI mistakes and corrections is more academically credible than an invented flawless development process.
+
+PHASE 3: TASK B — CODE GENERATION AND EXECUTION
+
+B1. Verify Ten Non-Trivial Features
+
+The SmartBrew implementation must clearly demonstrate these ten functionalities:
+
+ID| Functionality
+SB-01| Digital menu and drink customization
+SB-02| Contactless payment simulation
+SB-03| Weather and time context
+SB-04| Context-aware drink recommendation
+SB-05| Ingredient monitoring and low-stock alerts
+SB-06| Administrator authentication
+SB-07| Menu management and editing
+SB-08| Technician authentication and service mode
+SB-09| Component diagnostics
+SB-10| Error log export to CSV
+
+For EACH functionality:
+
+1. Find its corresponding requirement and user story.
+2. Find the actual implementation in source code.
+3. Verify that the user can execute it through the interface.
+4. Confirm that it produces an observable result.
+5. Test successful usage.
+6. Test invalid inputs and error scenarios.
+7. Verify that the implemented behavior matches documented acceptance criteria.
+8. Identify any assumptions or limitations.
+9. Repair defects where necessary.
+
+Do not mark a feature as complete merely because a button exists.
+
+B2. Application Quality
+
+Improve the application where meaningful, focusing on:
+
+- Consistent and intuitive navigation
+- Clear customer, administrator, and technician interfaces
+- Responsive and readable layouts
+- Accessible form controls
+- Input validation
+- Meaningful error messages
+- Reliable state transitions
+- Database consistency
+- Appropriate authorization checks
+- Correct simulation behavior
+- Stable application startup and shutdown
+
+Retain the existing Python and SQLite architecture unless there is a strong technical justification to change it.
+
+Avoid introducing unnecessary packages or external dependencies.
+
+Keep the prototype runnable on an independent machine.
+
+B3. Simulation Transparency
+
+The SmartBrew prototype may simulate hardware-dependent functionality.
+
+Explicitly identify simulated components, including:
+
+- Contactless payment
+- Weather information
+- Ingredient sensors
+- Brewing equipment
+- Machine diagnostics
+- Physical USB export
+
+Do not claim real NFC transactions, physical machine activation, live weather API calls, or physical USB writing unless they are genuinely implemented and verified.
+
+Document the difference between the original requirement and the executable prototype.
+
+B4. Testing
+
+Create or improve automated tests covering all ten functionalities.
+
+At minimum, verify:
+
+- Menu retrieval and customization bounds
+- Payment approval and rejection
+- No inventory deduction after declined payment
+- Correct inventory deductions
+- Low-stock threshold boundary
+- Weather-dependent recommendations
+- Offline recommendation fallback
+- Administrator authentication and authorization
+- Menu modifications
+- Technician access restrictions
+- Service mode restrictions
+- Successful and failed diagnostics
+- CSV log generation
+- Order and brewing lifecycle
+- Relevant database persistence behavior
+
+Run the real test suite.
+
+For every executed command, report its actual outcome.
+
+Do not claim that tests, screenshots, or browser checks were performed if they were not.
+
+Fix test failures and verify fixes wherever possible.
+
+PHASE 4: TASK C — REPOSITORY AND DOCUMENTATION
+
+C1. Source Code Documentation
+
+Inspect every custom function and method in the project.
+
+Ensure that each contains appropriate documentation covering:
+
+1. Purpose
+2. Input parameters
+3. Return values or output
+4. Important side effects where relevant
+
+Use Python docstrings for Python functions and JSDoc-style documentation for JavaScript functions.
+
+Use concise, accurate documentation.
+
+Do not introduce misleading comments or describe nonexistent behavior.
+
+C2. Professional README
+
+Improve the root README and Task B README.
+
+Include:
+
+Project Overview
+
+- SmartBrew AI purpose
+- System actors
+- Core functionality
+- Technology stack
+
+Environment and Prerequisites
+
+- Supported operating system
+- Exact tested Python version
+- Required dependencies
+- Database requirements
+- Browser requirements
+- Configuration options
+
+Installation
+
+Provide complete commands for cloning and preparing the repository.
+
+Execution
+
+Provide exact commands to run the web application.
+
+Functional Demonstration
+
+Provide step-by-step UI instructions for all ten features.
+
+For each feature include:
+
+- Feature ID
+- User role
+- Navigation instructions
+- Actions
+- Expected result
+
+Testing
+
+Provide the exact test commands and describe what the tests cover.
+
+Project Structure
+
+Explain the repository directories and significant files.
+
+Limitations
+
+Explain all relevant implementation constraints and simulated integrations.
+
+AI Usage
+
+Identify the actual LLM assistants and versions used across Tasks A, B, and C.
+
+Submission
+
+Explain how to generate the ZIP archive and which artifacts it includes.
+
+README instructions must match the actual working implementation.
+
+PHASE 5: ACADEMIC REPORT
+
+Create or improve a polished academic report at:
+
+"docs/report.md"
+
+The report should include:
+
+1. Title and project overview
+2. Introduction and objectives
+3. Development environment
+4. LLM selection and model disclosure
+5. Task A: Requirements elicitation methodology
+6. Task A: Artifacts and critical comparison
+7. Prompt engineering strategy
+8. Task B: Ten-feature implementation
+9. System architecture
+10. Testing methodology and verified results
+11. Task C: Documentation and repository management
+12. Critical evaluation of LLM assistance
+13. Challenges and corrections
+14. Limitations
+15. Conclusion
+16. References to repository artifacts
+17. Appendix references for prompts and interactions
+
+Use a professional academic tone.
+
+Critically discuss both the advantages and shortcomings of LLM-assisted software engineering.
+
+Do not invent experiments, test results, literature citations, or historical interactions.
+
+Prefer concrete evidence from the actual project.
+
+PHASE 6: TRACEABILITY
+
+Create or improve a requirements traceability matrix.
+
+For each of the ten core features, provide:
+
+Feature ID| Requirement| User story| Implementation files| Test cases| Verification status
+
+Ensure that all referenced files and test cases actually exist.
+
+Identify requirements that have no corresponding implementation or tests.
+
+PHASE 7: SUBMISSION PACKAGE
+
+Ensure that the repository contains:
+
+- All three Task A artifacts
+- Assignment 2 comparison evidence
+- Model disclosure
+- Authentic prompt and interaction records
+- Source code
+- Automated tests
+- README documentation
+- Academic report
+- Traceability
+- Verified execution evidence
+
+Create the final ZIP using the existing packaging script.
+
+Verify the ZIP contents and make sure it includes the required submission artifacts.
+
+Exclude:
+
+- ".git/"
+- Temporary files
+- Python cache directories
+- Local session data
+- Generated runtime databases
+- Real secrets and credentials
+
+Preserve source code and essential configuration files.
+
+PHASE 8: FINAL QUALITY ASSURANCE
+
+Perform a final evaluation against every requirement in the original Lab Assignment 3 specification.
+
+Verify the following:
+
+- Task A contains the required artifacts.
+- The comparison uses the authentic Assignment 2 baseline.
+- Rejected LLM suggestions have justifications.
+- Prompt strategy and actual conversation evidence are documented.
+- Exactly ten identified core functionalities are demonstrable.
+- The application can be started with documented commands.
+- Every function/method is documented appropriately.
+- README contains all mandatory sections.
+- Dependencies and tested environment are reproducible.
+- Relevant automated tests pass.
+- Claims about physical integrations are accurate.
+- Task B maps consistently to Task A.
+- Task C documentation matches the source code.
+- The final archive contains the necessary artifacts.
+- Git status and pending changes are clearly reported.
+
+Resolve issues before declaring completion.
+
+PHASE 9: FINAL DELIVERABLES AND REPORTING
+
+After making improvements:
+
+1. Run the necessary tests and validation commands.
+2. Produce the final ZIP archive.
+3. Review the actual files inside that archive.
+4. Inspect "git diff" to identify accidental changes.
+5. Ensure no secrets or generated runtime data are tracked.
+6. If Git operations are available, prepare a descriptive commit for the completed improvements.
+7. Do not claim that changes have been pushed unless the remote push actually succeeds.
+8. Do not claim Canvas submission has occurred unless it has actually been performed.
+
+Finally, provide:
+
+1. Assignment Compliance
+
+A table covering every Task A, B, and C requirement, with its verified status.
+
+2. Improvements Made
+
+A concise summary of actual code and document changes, with file paths.
+
+3. Test Results
+
+Commands executed, passing/failing tests, and unresolved issues.
+
+4. Ten-Feature Verification
+
+A table showing the actual status of SB-01 through SB-10.
+
+5. Submission Archive
+
+Exact archive path and verified contents.
+
+6. Remaining Manual Actions
+
+Only actions that I must personally perform, such as pushing unpushed commits or uploading the submission to Canvas.
+
+7. Final Assessment
+
+Evaluate the submission as an independent university examiner.
+
+Highlight remaining weaknesses, unsupported claims, or academic-integrity risks.
+
+EXECUTION RULES
+
+- Work directly with the existing repository.
+- Preserve functioning code.
+- Prefer minimal, high-value changes.
+- Do not fabricate evidence.
+- Do not invent historical LLM transcripts.
+- Do not silently weaken acceptance criteria to make tests pass.
+- Do not confuse simulation with real hardware integration.
+- Do not present planned work as completed work.
+- Do not leave placeholder sections or TODOs in required deliverables.
+- Do not stop after producing an analysis or a plan.
+- Implement corrections, run validations, and prepare the deliverables in the current working session.
+- If an action cannot be completed in the environment, explain the exact limitation and provide the concrete remaining step.
+
+START NOW by inspecting the repository and building the compliance matrix. Then systematically fix every verifiable deficiency and prepare the final submission package.
 ```
 
 ## 2. Assistant clarification response — English translation from Russian
