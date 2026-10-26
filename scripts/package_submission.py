@@ -6,7 +6,12 @@ import zipfile
 
 
 def package(destination: Path) -> int:
-    """Archive allowlisted source/docs paths into destination; return the number of files."""
+    """Create a submission ZIP from the public project artifact allowlist.
+
+    Inputs: destination is a Path to a ZIP file; its parent directory must exist.
+    Returns: int, number of archived files. Writes the ZIP and overwrites an
+    existing destination. Excludes runtime databases, credentials and Git data.
+    """
     root = Path(__file__).resolve().parent.parent
     roots = ['app.py', 'README.md', 'requirements.txt', '.python-version', '.gitignore',
              'static', 'tests', 'docs', 'scripts', '.github']

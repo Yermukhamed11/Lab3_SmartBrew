@@ -32,7 +32,11 @@ MAX_BODY = 65_536
 
 
 def now() -> str:
-    """Return the current UTC time as an ISO string; takes no parameters."""
+    """Get a timestamp for persisted events.
+
+    Inputs: None.
+    Returns: str: current timezone-aware UTC ISO 8601 timestamp.
+    """
     return datetime.now(timezone.utc).isoformat()
 
 
@@ -40,13 +44,21 @@ class APIError(Exception):
     """Carry a safe HTTP error message and status from validation to the handler."""
 
     def __init__(self, status: int, message: str):
-        """Initialize with HTTP status and safe message; return None."""
+        """Initialize an API validation or authorization failure.
+
+        Inputs: status: integer HTTP error status. message: safe, user-visible explanation.
+        Returns: None; stores status and exception message.
+        """
         super().__init__(message)
         self.status = status
 
 
 def number(value, name: str, minimum: float, maximum: float, integer=False):
-    """Validate a finite numeric value in inclusive bounds; return int/float or raise."""
+    """Validate finite numeric input and inclusive limits.
+
+    Inputs: value: int/float, excluding bool. name: field label. minimum/maximum: inclusive bounds. integer: whether a whole number is required.
+    Returns: int when integer=True, otherwise float. Raises APIError(400) for invalid input.
+    """
     if isinstance(value, bool) or not isinstance(value, (int, float)):
         raise APIError(400, f'{name} must be a number.')
     if not math.isfinite(value) or not minimum <= value <= maximum:
@@ -57,7 +69,11 @@ def number(value, name: str, minimum: float, maximum: float, integer=False):
 
 
 def text_field(value, name: str, maximum=100, allow_empty=False) -> str:
-    """Validate and trim a bounded text input; return text or raise APIError."""
+    """Validate and trim a text field.
+
+    Inputs: value: string. name: field label. maximum: maximum trimmed length. allow_empty: whether an empty trimmed value is accepted.
+    Returns: str: trimmed text. Raises APIError(400) for invalid type or length.
+    """
     if not isinstance(value, str) or len(value.strip()) > maximum or (not value.strip() and not allow_empty):
         raise APIError(400, f'{name} must be {1 if not allow_empty else 0}–{maximum} characters.')
     return value.strip()
@@ -67,7 +83,11 @@ class Store:
     """Persist menu, inventory, orders, service state and audit events in SQLite."""
 
     def __init__(self, path: str):
-        """Create database at path and seed missing tables; return None."""
+        """Initialize persistent storage and insert missing seed records.
+
+        Inputs: path: SQLite database file path; parent directories are created if needed.
+        Returns: None; creates tables and default records without overwriting existing data.
+        """
         self.path = str(path)
         Path(self.path).parent.mkdir(parents=True, exist_ok=True)
         self.sessions = {}
@@ -113,7 +133,11 @@ class Store:
 
     @contextmanager
     def db(self):
-        """Yield a transaction connection with a write reservation; commit or rollback and close."""
+        """Manage an atomic database transaction and connection lifetime.
+
+        Inputs: None; uses this Store instance database path.
+        Returns: Context manager yielding sqlite3.Connection with named rows; commits on success, rolls back on an exception and always closes.
+        """
         connection = sqlite3.connect(self.path, timeout=10)
         connection.row_factory = sqlite3.Row
         try:
@@ -128,18 +152,30 @@ class Store:
 
     @staticmethod
     def log(db, severity: str, event: str, message: str):
-        """Append an audit event using an open connection and safe text; return None."""
+        """Append a non-secret audit event within the caller transaction.
+
+        Inputs: db: open SQLite connection. severity: log level. event: event code. message: safe event details.
+        Returns: None; inserts one timestamped log row.
+        """
         db.execute('INSERT INTO logs(severity,event,message,created_at) VALUES(?,?,?,?)',
                    (severity, event, message, now()))
 
     @staticmethod
     def mode(db) -> str:
-        """Read the persisted operating mode from an open connection; return normal/service."""
+        """Read the persisted operating mode.
+
+        Inputs: db: open SQLite connection containing the settings table.
+        Returns: str: 'normal' or 'service'.
+        """
         return db.execute("SELECT value FROM settings WHERE key='mode'").fetchone()[0]
 
     @staticmethod
     def inventory(db) -> dict:
-        """Read ingredient levels and strict below-15% alerts; return a JSON-ready dictionary."""
+        """Compute ingredient levels and strict below-15% alerts.
+
+        Inputs: db: open SQLite connection containing ingredient quantities/capacities.
+        Returns: dict: ingredients list with percentage/low fields and alerts list of low ingredients.
+        """
         ingredients = []
         for row in db.execute('SELECT * FROM ingredients ORDER BY name'):
             item = dict(row)
@@ -150,14 +186,22 @@ class Store:
 
     @staticmethod
     def recipe(product, milk: int, sugar: int) -> dict:
-        """Combine the stored base recipe with milk percentage and sugar grams; return amounts."""
+        """Construct ingredient quantities for a customized drink.
+
+        Inputs: product: product row with a JSON base recipe. milk: integer 0–100 percent of a 200 ml allowance. sugar: integer 0–20 grams.
+        Returns: dict mapping ingredient IDs to required grams or millilitres; does not deduct stock.
+        """
         recipe = json.loads(product['recipe'])
         recipe['milk'] = milk * 2  # 100% slider means a 200 ml milk allowance.
         recipe['sugar'] = sugar
         return recipe
 
     def menu(self, include_inactive=False) -> dict:
-        """Return menu entries and default-recipe availability; optionally include hidden entries."""
+        """Read menu products and default-recipe availability.
+
+        Inputs: include_inactive: boolean; include hidden products when True.
+        Returns: dict with products list and machine_mode. Each product includes integer price_cents and available/active booleans.
+        """
         with self.db() as db:
             stock = {row['id']: row['stock'] for row in db.execute('SELECT * FROM ingredients')}
             products = []
@@ -173,7 +217,11 @@ class Store:
 
     @staticmethod
     def order(db, order_id: str) -> dict:
-        """Read one opaque order ID and update time-based progress; return order or raise 404."""
+        """Read an order and advance its elapsed-time brewing state.
+
+        Inputs: db: open SQLite transaction. order_id: opaque SB-prefixed order identifier.
+        Returns: dict of order details including status and progress 0–100. Raises APIError(404) if absent; may persist ready status.
+        """
         row = db.execute('SELECT * FROM orders WHERE id=?', (order_id,)).fetchone()
         if row is None:
             raise APIError(404, 'Order not found.')
@@ -187,7 +235,11 @@ class Store:
         return item
 
     def purchase(self, body: dict) -> dict:
-        """Validate a simulated payment and atomically reserve recipe stock; return the new order."""
+        """Create a simulated paid order with atomic inventory deduction.
+
+        Inputs: body: dict with product_id, integer milk_percent(0–100), sugar_grams(0–20), payment_method('card'/'phone'), payment_result('approved'/'declined').
+        Returns: dict of the new brewing order. Raises APIError for invalid input, declined payment, missing product, service/busy machine or insufficient stock; failed purchases do not deduct stock.
+        """
         product_id = text_field(body.get('product_id'), 'product_id')
         milk = number(body.get('milk_percent'), 'milk_percent', 0, 100, True)
         sugar = number(body.get('sugar_grams'), 'sugar_grams', 0, 20, True)
@@ -224,7 +276,11 @@ class Store:
             return self.order(db, order_id)
 
     def edit_menu(self, body: dict, product_id=None) -> dict:
-        """Create or patch a menu product using validated fields; return the saved public product."""
+        """Add or partially update a validated menu entry.
+
+        Inputs: body: dict of name, description, category(hot/iced), price_cents, default_milk_percent and optional active. product_id: existing ID for edits, None for creation.
+        Returns: dict of the saved product. Raises APIError for unsupported/invalid fields or missing edit target; persists changes and audit event.
+        """
         allowed = {'name', 'description', 'category', 'price_cents', 'default_milk_percent', 'active'}
         if not body or set(body) - allowed:
             raise APIError(400, 'Supply only supported menu fields.')
@@ -253,7 +309,11 @@ class Store:
         return next(item for item in self.menu(True)['products'] if item['id'] == product_id)
 
     def weather(self, scenario: str, hour) -> dict:
-        """Produce a named local weather fixture and validated UTC hour; return context including provenance."""
+        """Produce explicit simulated weather/time context.
+
+        Inputs: scenario: 'hot', 'cold', 'mild' or 'offline'. hour: integer or integer string 0–23, interpreted as UTC.
+        Returns: dict with source, online, temperature_c, condition, hour and message. Offline context logs a warning; invalid inputs raise APIError(400).
+        """
         if scenario not in ('hot', 'cold', 'mild', 'offline'):
             raise APIError(400, 'Unknown weather scenario.')
         if isinstance(hour, str):
@@ -272,7 +332,11 @@ class Store:
                 'hour':hour, 'message':'Local simulation; no external weather API.' if online else 'Offline simulation: time-only fallback.'}
 
     def recommend(self, body: dict) -> dict:
-        """Choose an available drink using explicit weather/time rules; return recommendation and explanation."""
+        """Choose an available drink with transparent weather/time rules.
+
+        Inputs: body: dict with optional scenario (default mild) and hour (default current UTC hour).
+        Returns: dict with product_id, product_name, reason, weather and engine. Raises APIError(409) if no drink is available.
+        """
         weather = self.weather(body.get('scenario', 'mild'), body.get('hour', datetime.now(timezone.utc).hour))
         products = [item for item in self.menu()['products'] if item['available']]
         if not products:
@@ -302,10 +366,18 @@ class Handler(BaseHTTPRequestHandler):
     """Serve static UI and same-origin JSON API with role-protected administration."""
 
     def log_message(self, format, *args):
-        """Suppress routine request logs (which may contain user URLs); return None."""
+        """Suppress routine request logging to avoid echoing user URLs.
+
+        Inputs: format: BaseHTTPRequestHandler log format string. args: formatting values, deliberately unused.
+        Returns: None; emits no log output.
+        """
 
     def send_data(self, status: int, value, content_type='application/json; charset=utf-8', headers=None):
-        """Serialize JSON or bytes and write a bounded response with headers; return None."""
+        """Send a JSON or byte HTTP response with security headers.
+
+        Inputs: status: HTTP status integer. value: JSON-serializable data or bytes. content_type: MIME header. headers: optional additional header dict.
+        Returns: None; writes headers and response bytes to the client socket.
+        """
         payload = json.dumps(value, ensure_ascii=False).encode() if not isinstance(value, bytes) else value
         self.send_response(status)
         self.send_header('Content-Type', content_type)
@@ -320,7 +392,11 @@ class Handler(BaseHTTPRequestHandler):
         self.wfile.write(payload)
 
     def body(self) -> dict:
-        """Read a JSON object with a 64 KiB limit; return dict or raise a client error."""
+        """Parse a bounded JSON request object.
+
+        Inputs: None explicitly; reads Content-Length and bytes from the current HTTP request.
+        Returns: dict: parsed JSON object, or empty dict for no body. Raises APIError(400/413) for malformed, non-object or oversized input.
+        """
         try:
             size = int(self.headers.get('Content-Length', '0'))
         except ValueError:
@@ -336,7 +412,11 @@ class Handler(BaseHTTPRequestHandler):
         return value
 
     def role(self):
-        """Read a nonexpired opaque session cookie; return role or None without exposing secrets."""
+        """Resolve the current browser session without exposing its token.
+
+        Inputs: None explicitly; reads the request Cookie header and server in-memory sessions.
+        Returns: str: 'admin'/'technician' for a valid unexpired session, otherwise None.
+        """
         cookie = SimpleCookie()
         try:
             cookie.load(self.headers.get('Cookie', ''))
@@ -350,12 +430,20 @@ class Handler(BaseHTTPRequestHandler):
         return None
 
     def require(self, role: str):
-        """Require an exact session role from the caller; return None or raise 403."""
+        """Enforce exact role authorization for a protected route.
+
+        Inputs: role: required session role, 'admin' or 'technician'.
+        Returns: None on success. Raises APIError(403) for an absent, expired or wrong-role session.
+        """
         if self.role() != role:
             raise APIError(403, f'{role.capitalize()} sign-in required.')
 
     def route(self, method: str):
-        """Dispatch HTTP method/path using the server store; send one response or raise APIError."""
+        """Dispatch a request to the API or static-file handler.
+
+        Inputs: method: 'GET', 'POST' or 'PATCH'; path, headers and body are read from the current HTTP request.
+        Returns: None; sends one response and may update storage/session state. Raises APIError for expected route, validation or authorization errors.
+        """
         parsed = urlsplit(self.path)
         path = parsed.path
         store = self.server.store
@@ -507,7 +595,11 @@ class Handler(BaseHTTPRequestHandler):
         raise APIError(404, 'Route not found.')
 
     def dispatch(self, method: str):
-        """Execute a route and translate expected/unexpected exceptions into safe JSON responses."""
+        """Translate route failures into safe HTTP responses.
+
+        Inputs: method: 'GET', 'POST' or 'PATCH'.
+        Returns: None; sends a normal response, a safe API error, or a generic 500 error; ignores disconnected clients.
+        """
         try:
             self.route(method)
         except APIError as error:
@@ -518,20 +610,36 @@ class Handler(BaseHTTPRequestHandler):
             self.send_data(500, {'error':'Internal server error. Check the local database and restart if needed.'})
 
     def do_GET(self):
-        """Handle a GET request with no arguments; return None after sending the response."""
+        """Handle the standard-library GET callback.
+
+        Inputs: None explicitly; the server populates request attributes on self.
+        Returns: None; dispatches and writes the HTTP response.
+        """
         self.dispatch('GET')
 
     def do_POST(self):
-        """Handle a POST request with no arguments; return None after sending the response."""
+        """Handle the standard-library POST callback.
+
+        Inputs: None explicitly; the server populates request attributes on self.
+        Returns: None; dispatches and writes the HTTP response.
+        """
         self.dispatch('POST')
 
     def do_PATCH(self):
-        """Handle a PATCH request with no arguments; return None after sending the response."""
+        """Handle the standard-library PATCH callback.
+
+        Inputs: None explicitly; the server populates request attributes on self.
+        Returns: None; dispatches and writes the HTTP response.
+        """
         self.dispatch('PATCH')
 
 
 def create_server(host='127.0.0.1', port=8000, db_path=None):
-    """Build an HTTP server for host/port and SQLite path; return it without starting threads."""
+    """Create a configured HTTP server without starting its serve loop.
+
+    Inputs: host: bind address (default loopback). port: integer TCP port, 0 chooses a free port. db_path: optional SQLite path; otherwise SMARTBREW_DB or data/smartbrew.db.
+    Returns: ThreadingHTTPServer with initialized Store; caller must serve and close it.
+    """
     store = Store(db_path or os.environ.get('SMARTBREW_DB', str(ROOT / 'data' / 'smartbrew.db')))
     server = ThreadingHTTPServer((host, port), Handler)
     server.daemon_threads = True
@@ -540,7 +648,11 @@ def create_server(host='127.0.0.1', port=8000, db_path=None):
 
 
 def main():
-    """Parse CLI host/port/database arguments and serve until interrupted; return None."""
+    """Start the command-line application and close it after interruption.
+
+    Inputs: None explicitly; CLI accepts --host, --port and --db.
+    Returns: None; serves until KeyboardInterrupt and closes the listening socket.
+    """
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--host', default='127.0.0.1')
     parser.add_argument('--port', default=8000, type=int)

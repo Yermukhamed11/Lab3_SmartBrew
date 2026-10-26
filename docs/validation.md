@@ -47,3 +47,11 @@ Screenshots: [desktop](screenshots/desktop.png), [mobile](screenshots/mobile.png
 - GitHub Actions is configured to run the integration suite; a remote workflow run is not claimed here.
 - Browser QA was run as a development check. The reusable, dependency-free acceptance suite is `unittest`; Playwright is not an undeclared runtime prerequisite.
 - No physical card, bank charge, weather API, sensor, pump, heater or USB write was tested. No live recommendation model is used.
+
+## Task C review after the user's explicit recheck request
+
+Reviewed all named functions/methods across application, browser client, integration tests and packaging script. Existing comments were present, but the review found underspecified parameter contracts and a few inaccurate descriptions. Expanded the 28 backend function/method docstrings with explicit Inputs/Returns, clarified HTTP-test helper and ZIP-script contracts, and corrected `heading()` to identify trusted HTML input and `recipeText()` to identify plain text output. AST comparisons against the initial commit confirmed the Python edits changed documentation only.
+
+Added fresh-clone/extracted-ZIP working-directory instructions; aligned all ten README demo steps with real UI labels; explained that signing out does not exit service mode. `.python-version` and GitHub Actions now pin the actually tested Python 3.12.14. No third-party packages are needed.
+
+The review also found a real preview/documentation mismatch: the UI displayed milk percentage while the requirements/demo expected millilitres too. It now displays both, e.g. `20% milk (40 ml of 200 ml)`. A targeted Chromium assertion passed for that example. JavaScript syntax and Python compilation passed after the review. No Python behavior changed, so the already-passed HTTP integration suite did not need a redundant rerun.

@@ -109,7 +109,7 @@ function applyBarWidths(root) {
     element.style.width = `${width}%`;
   }
 }
-/** Return a page heading. Inputs: eyebrow, title, description, optional badge. Output: safe HTML. */
+/** Build a page heading. Inputs: eyebrow/title/description strings (escaped), optional badge as TRUSTED caller-sanitized HTML. Output: HTML string. */
 function heading(eyebrow, title, description, badge = "") {
   return `<div class="page-heading"><div><div class="eyebrow">${escapeHTML(eyebrow)}</div><h1>${escapeHTML(title)}</h1><p class="subtext">${escapeHTML(description)}</p></div>${badge}</div>`;
 }
@@ -150,8 +150,8 @@ function renderOrderPanel() {
 }
 /** Test whether a product is selected. Input: product. Output: boolean. */
 function isSelected(product) { return String(product.id) === String(state.selected); }
-/** Describe the current recipe. Input: none. Output: escaped HTML text. */
-function recipeText() { return `${state.milk}% milk · ${state.sugar ? `${state.sugar} g sugar` : "No added sugar"} · Freshly prepared`; }
+/** Describe the recipe from numeric state. Input: none explicitly; uses state.milk/state.sugar. Output: plain summary string, not an HTML escaper. */
+function recipeText() { return `${state.milk}% milk (${state.milk * 2} ml of 200 ml) · ${state.sugar ? `${state.sugar} g sugar` : "No added sugar"} · Freshly prepared`; }
 /** Build active order progress and collection controls. Input: none. Output: safe HTML. */
 function orderPanel() {
   const order = state.order;

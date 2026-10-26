@@ -170,3 +170,15 @@ Browser actual QA PASSED Chromium1440x1050 &390x844 no horizontal overflow, no u
 Accepted refinements include atomic purchase/stock mutation, explicit percentage boundaries, role rejection checks, offline fallback, explainable recommendations and dedicated progress/report requirements. Rejected initial suggestions include cafe pickup scheduling, loyalty rewards, customer reviews, a multi-item cart and unauthenticated role switching. Physical NFC, sensors, actuators, weather API and direct USB writing are explicitly deferred. Individual reasons are in [comparison.md](comparison.md).
 
 The report reflects the interaction's actual change of direction. No earlier human elicitation transcript, instructor approval, measured performance SLA or successful physical-device test is invented.
+
+## 8. Later Task C review request
+
+The user reiterated the Task C requirements for repository hosting, function purpose/inputs/outputs, README overview/runtime/run/test guidance and reproducible setup, then asked verbatim:
+
+> Проверь еще условия, если есть неправильные места исправь
+
+Actual assistant response:
+
+> Проверю Task C отдельно: документацию каждой функции, версии и зависимости, а также инструкции запуска и демонстрации всех 10 функций на другой машине. Исправлю найденные пробелы до отправки в GitHub.
+
+**Review summary:** expanded explicit function contracts, corrected inaccurate HTML/plain-text comments, added fresh-machine clone/cd instructions, aligned demo labels, pinned the tested Python 3.12.14, and made the recipe preview show the documented millilitres as well as percentage. Source syntax/compilation and the targeted browser assertion passed; Python AST comparison confirmed documentation-only Python edits. See [validation.md](validation.md).

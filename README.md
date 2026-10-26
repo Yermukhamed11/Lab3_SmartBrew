@@ -6,10 +6,20 @@ The ten selected functionalities preserve the **SB-01–SB-10** identifiers from
 
 ## Requirements and setup
 
-- Python **3.11 or newer**, with the standard-library `sqlite3` module. Developed and tested in Linux with Python **3.12.14**; `.python-version` selects the 3.12 series.
+- Python **3.11 or newer**, with the standard-library `sqlite3` module. Developed and tested in Linux with Python **3.12.14**; `.python-version` pins the recommended reproducible version to **3.12.14**.
 - A modern browser with JavaScript enabled.
+- Git, if cloning the repository; a downloaded and extracted source ZIP is also supported.
 - No third-party Python packages, database server, API key, payment account, internet connection or hardware is needed after obtaining the repository. `requirements.txt` records that there are no external Python dependencies.
 - The supported evaluation environment is Linux. Other operating systems have not been independently validated.
+
+Obtain the source and enter its directory:
+
+```bash
+git clone https://github.com/Yermukhamed11/Lab3_SmartBrew.git
+cd Lab3_SmartBrew
+```
+
+If using the submission ZIP, extract it and enter its `Lab3_SmartBrew` directory instead. Install Python 3.11+ through your operating system if the version check below fails. There is no compilation or dependency-installation step: Python serves the static browser assets and initializes SQLite directly.
 
 From the repository directory:
 
@@ -37,18 +47,18 @@ The interface has **Brew coffee**, **Administration**, **Machine service** and *
 
 | Feature | Steps | Expected result |
 | --- | --- | --- |
-| **SB-01 — Menu and customization** | In **Brew coffee**, select a Latte. Move the milk slider to **20%** and change sugar. | The recipe preview changes. Milk ranges from 0–100% of a 200 ml allowance; sugar ranges from 0–20 g. Prices are stored in integer cents; customization does not add a surcharge. |
-| **SB-02 — Contactless payment simulation** | Try a declined card payment, then an approved card or phone payment. | A decline shows an error and consumes no ingredients. Approval starts one brewing order. Wait approximately **12 seconds**, then collect the ready drink. This never charges real money. |
-| **SB-03 — Weather context simulation** | Change the weather scenario between hot, cold, mild and offline; adjust the UTC hour. | The local weather fixture displays its source. Offline mode shows an unavailable source and permits a time-only recommendation. No live weather API request occurs. |
+| **SB-01 — Menu and customization** | In **Brew coffee**, select **Caffè Latte**. Move the **Milk** slider to **20%** and change **Sugar**. | The recipe preview changes. Milk ranges from 0–100% of a 200 ml allowance; sugar ranges from 0–20 g. Prices are stored in integer cents; customization does not add a surcharge. |
+| **SB-02 — Contactless payment simulation** | Choose **Card** and **Declined · simulation** under **Demo payment response**, then click **Pay & brew**. Retry with **Approved · simulation**; **Phone** is also available. | A decline shows an error and consumes no ingredients. Approval starts one brewing order. Wait approximately **12 seconds**, then click **Collect my coffee** for the ready drink. This never charges real money. |
+| **SB-03 — Weather context simulation** | Under **Weather simulation**, switch between **Hot · 30°C**, **Cold day**, **Mild day** and **Offline**; adjust **UTC hour**. | The local weather fixture displays its source. Offline mode shows an unavailable source and permits a time-only recommendation. No live weather API request occurs. |
 | **SB-04 — Suggestion widget** | Set hot weather (**30°C**) and select **Surprise me**. Then try offline weather. | An available iced drink is suggested in hot weather; offline mode explains its time-only fallback. Suggestions include a reason and can be customized before payment. |
-| **SB-05 — Inventory alerts** | Sign in to **Administration**. Set coffee beans to **100 g** out of the **1000 g** capacity, then restore an adequate level. | A low-stock alert appears at 10%. The threshold is strictly **below 15%**: 150 g is not low, 149 g is. Stock controls are simulated sensor overrides. |
-| **SB-06 — Administrator authentication** | Enter an incorrect administrator password; then use `smartbrew-admin`. | Wrong credentials are rejected; a valid session unlocks administrator operations. Technician credentials cannot authorize administrator endpoints. |
-| **SB-07 — Menu editor** | While signed in as administrator, create a hot drink with a name, description, price and default milk setting. Edit its price or hide it, then return to **Brew coffee**. | Active additions and edits appear in the customer menu; hidden drinks disappear. New drinks use the prototype's standard coffee recipe, not a recipe inferred from their name. |
-| **SB-08 — Technician access and service mode** | Collect any active drink. Open **Machine service**, sign in using PIN `2468`, and enable service mode. | A separate technician session opens. Service mode blocks customer brewing. Entry is rejected while an uncollected order is active. |
-| **SB-09 — Diagnostic interface** | In service mode, test a milk pump, water pump or heater. Try the simulated-fault option as well. | Deterministic pass/fail readings and audit events appear. The nominal two-second fixture is returned immediately; no physical component is activated. |
-| **SB-10 — CSV error log export** | As technician, download the service log CSV after generating a diagnostic fault. | The browser downloads `smartbrew-logs.csv`, including the failed diagnostic. Save or copy that file to a USB drive manually if desired; the application does not mount or write a physical USB device. |
+| **SB-05 — Inventory alerts** | Sign in to **Administration**, open **Ingredients & alerts**, and choose **Set level** on **Coffee beans**. Set **100 g** out of the **1000 g** capacity, click **Save simulated reading**, then restore an adequate level. | A low-stock alert appears at 10%. The threshold is strictly **below 15%**: 150 g is not low, 149 g is. Stock controls are simulated sensor overrides. |
+| **SB-06 — Administrator authentication** | Open **Administration**, enter an incorrect **Admin password** and click **Sign in to administration**; then repeat with `smartbrew-admin`. | Wrong credentials are rejected; a valid session unlocks administrator operations. Technician credentials cannot authorize administrator endpoints. |
+| **SB-07 — Menu editor** | In **Administration → Menu editor**, choose **Add drink**. Supply **Drink name**, **Description**, **Price (USD)**, **Temperature** and **Default milk (%)**, then **Add to the collection**. Use **Edit → Save changes** to change its price or clear **Active on customer menu**; return to **Brew coffee**. | Active additions and edits appear in the customer menu; hidden drinks disappear. New drinks use the prototype's standard coffee recipe, not a recipe inferred from their name. |
+| **SB-08 — Technician access and service mode** | Collect any active drink. Open **Machine service**, enter **Maintenance PIN** `2468`, click **Access service workspace**, then **Enable service mode**. | A separate technician session opens. Service mode blocks customer brewing. Entry is rejected while an uncollected order is active. |
+| **SB-09 — Diagnostic interface** | In service mode, click **Simulate 2 s test** on **Milk pump**, **Water pump** or **Heating element**. Repeat with **Simulate component fault** checked. | Deterministic pass/fail readings and audit events appear. The nominal two-second fixture is returned immediately; no physical component is activated. |
+| **SB-10 — CSV error log export** | As technician, click **Export CSV** in **Machine event log** after generating a diagnostic fault. | The browser downloads `smartbrew-logs.csv`, including the failed diagnostic. Save or copy that file to a USB drive manually if desired; the application does not mount or write a physical USB device. |
 
-Additional baseline user stories are also demonstrated: the customer sees brewing progress; **Sales insights** shows today's UTC order counts, revenue from completed/collected drinks, average completed order value and popular drinks. Sales insights requires administrator sign-in. A browser holds one role at a time, so sign in again when switching between administrator and technician work. Return the machine to normal mode before resuming customer purchases.
+Additional baseline user stories are also demonstrated: the customer sees brewing progress; **Sales insights** shows today's UTC order counts, revenue from completed/collected drinks, average completed order value and popular drinks. Sales insights requires administrator sign-in. A browser holds one role at a time, so sign in again when switching between administrator and technician work. Use **Finish maintenance** to return the machine to normal mode before resuming customer purchases; signing out alone leaves service mode enabled.
 
 The machine serves one drink at a time. Ingredients are checked and deducted atomically with order creation, so insufficient stock cannot partially consume a recipe. A ready drink must be collected before the next order. Do not close an active order and expect a second purchase to bypass this interlock.
 
@@ -62,7 +72,7 @@ python3 -m unittest discover -s tests -v
 
 The suite starts real HTTP servers on ephemeral local ports and creates isolated temporary SQLite databases. It checks menu/customization validation, successful and declined payments, atomic inventory deductions, strict 15% alerts, weather/recommendation scenarios, administrator and technician authorization, menu editing, service interlocks, diagnostic outcomes, CSV downloads, daily sales, brewing progress and persistence across a server restart. One lifecycle test waits for the actual twelve-second brewing interval; allow approximately half a minute for the suite. It does not consume or reset your development database.
 
-GitHub Actions runs the same suite with Python 3.12. JavaScript can also be syntax-checked with Node.js when available:
+GitHub Actions runs the same suite with Python **3.12.14**, matching the recommended local version. JavaScript can also be syntax-checked with Node.js when available:
 
 ```bash
 node --check static/app.js
