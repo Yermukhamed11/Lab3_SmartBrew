@@ -671,14 +671,3 @@ Current assistant response, translated summary from Russian:
 
 **Translation note:** this English version preserves the meaning of the historical messages while identifying their original language. Original English prompts remain verbatim where labeled; translated quotations are not represented as original English messages. The latest request and response above are concise translated summaries rather than claimed word-for-word originals. Publication and archive results are reported separately after validation.
 
-## 12. Presentation review
-
-Subsequent user request, translated summary from Russian:
-
-> Improve the presentation of the conversation record and illustrate well-structured English prompts.
-
-Assistant response, translated summary from Russian:
-
-> I will organize the actual record into clear stages and provide strong retrospective prompt templates separately, without attributing unsent prompts to the student.
-
-**Editorial result:** the submission now has a readable interaction report at [prompt-log.md](prompt-log.md), this evidence appendix, and a [retrospective prompt library](prompt-library.md). The templates are explicitly identified as composed after development; they are not substituted into the historical conversation as student messages.
